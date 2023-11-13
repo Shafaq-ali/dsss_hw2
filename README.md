@@ -1,1 +1,1 @@
-# dsss_hw2
+This is homework 2 of dsss
