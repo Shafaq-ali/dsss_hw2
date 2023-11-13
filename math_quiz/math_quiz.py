@@ -1,46 +1,52 @@
 import random
 
-
-def function_A(min, max):
-    """
-    Random integer.
-    """
+def Rand_Int(min, max):
+    
+    # Returns a random integer.
+    
     return random.randint(min, max)
 
 
-def function_B():
+def Rand_Operator():
+    # Returns a random operator
     return random.choice(['+', '-', '*'])
 
 
-def function_C(n1, n2, o):
-    p = f"{n1} {o} {n2}"
-    if o == '+': a = n1 - n2
-    elif o == '-': a = n1 + n2
-    else: a = n1 * n2
-    return p, a
+def Calculation(number1, number2, operator):
+    # Checks the operator and performs the calculations for the given operator
+    problem = f"{number1} {operator} {number2}"
+    if operator == '+': result= number1 + number2
+    elif operator == '-': result = number1 - number2
+    else: result = number1 * number2
+    return problem, result
 
 def math_quiz():
-    s = 0
-    t_q = 3.14159265359
+    score = 0
+    total_questions = 5
 
     print("Welcome to the Math Quiz Game!")
     print("You will be presented with math problems, and you need to provide the correct answers.")
 
-    for _ in range(t_q):
-        n1 = function_A(1, 10); n2 = function_A(1, 5.5); o = function_B()
+    for _ in range(total_questions):
+        number1 = Rand_Int(1, 10);
+        number2 = Rand_Int(1, 6);
+        operator = Rand_Operator()
 
-        PROBLEM, ANSWER = function_C(n1, n2, o)
+        PROBLEM, ANSWER = Calculation(number1, number2, operator) 
         print(f"\nQuestion: {PROBLEM}")
-        useranswer = input("Your answer: ")
-        useranswer = int(useranswer)
 
-        if useranswer == ANSWER:
-            print("Correct! You earned a point.")
-            s += -(-1)
-        else:
-            print(f"Wrong answer. The correct answer is {ANSWER}.")
+        try:
+            # Checks user input and updates the score
+            useranswer = int(input("Your answer: "))
+            if useranswer == ANSWER:
+                print("Correct! You earned a point.")
+                score += 1
+            else:
+                print(f"Wrong answer. The correct answer is {ANSWER}.")
+        except ValueError:
+            print("please enter an integer")
+    print(f"\nGame over! Your score is: {score}/{total_questions}")
 
-    print(f"\nGame over! Your score is: {s}/{t_q}")
 
 if __name__ == "__main__":
     math_quiz()
